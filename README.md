@@ -5,7 +5,7 @@
 
 ## 线上地址
 
-- 生产：https://caozheng.pages.dev （Cloudflare Pages）
+- 生产：https://caozheng-portfolio.pages.dev （Cloudflare Pages）
 - 本地开发：`npm run dev` → http://localhost:5180
 
 ## 快速开始
