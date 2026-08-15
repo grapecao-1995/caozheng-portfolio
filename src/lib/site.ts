@@ -191,6 +191,13 @@ export const projects: Project[] = [
       '/images/projects/project-02-09.webp',
       '/images/projects/project-02-10.webp',
       '/images/projects/project-02-11.webp',
+      '/images/projects/project-02-12.webp',
+      '/images/projects/project-02-13.webp',
+      '/images/projects/project-02-14.webp',
+      '/images/projects/project-02-15.webp',
+      '/images/projects/project-02-16.webp',
+      '/images/projects/project-02-17.webp',
+      '/images/projects/project-02-18.webp',
     ],
   },
   {
