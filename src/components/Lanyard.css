@@ -1,0 +1,14 @@
+.lanyard-wrapper {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 通过 scale 微调挂绳在卡片容器内的显示大小 */
+  transform: scale(1);
+  transform-origin: center;
+  -webkit-user-select: none;
+  user-select: none;
+}

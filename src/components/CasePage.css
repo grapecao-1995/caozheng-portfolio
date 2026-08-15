@@ -1,0 +1,156 @@
+.case-page {
+  min-height: 100vh;
+  background: #0c0c0c;
+  color: #d7e2ea;
+  font-family: 'Kanit', 'Noto Sans SC', system-ui, sans-serif;
+}
+
+/* 顶栏 */
+.case-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+}
+.case-brand {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: rgba(215, 226, 234, 0.45);
+}
+.case-back {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: rgba(215, 226, 234, 0.7);
+  text-decoration: none;
+  border: 1px solid rgba(215, 226, 234, 0.15);
+  border-radius: 999px;
+  padding: 8px 18px;
+  transition: all 0.25s ease;
+}
+.case-back:hover {
+  border-color: rgba(182, 0, 168, 0.6);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(182, 0, 168, 0.35);
+}
+
+/* 背景氛围 */
+.case-glow {
+  position: fixed;
+  border-radius: 9999px;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+.case-glow--a {
+  left: -8%;
+  top: 12%;
+  width: 420px;
+  height: 420px;
+  background: rgba(182, 0, 168, 0.14);
+}
+.case-glow--b {
+  right: -8%;
+  bottom: 8%;
+  width: 380px;
+  height: 380px;
+  background: rgba(76, 91, 255, 0.12);
+}
+
+/* ScrollStack 适配：整页滚动模式 */
+.case-stack {
+  height: auto;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+.case-stack .scroll-stack-inner {
+  padding: 22vh 1.25rem 60rem;
+  min-height: 100vh;
+}
+
+/* 卡片通用样式 */
+.case-stack .scroll-stack-card {
+  height: auto;
+  min-height: 44vh;
+  margin: 26px 0;
+  padding: 3rem 2rem;
+  border-radius: 28px;
+  border: 1px solid rgba(215, 226, 234, 0.12);
+  background: rgba(20, 20, 27, 0.78);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 24px 80px -30px rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+  width: min(760px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.case-kicker {
+  font-size: 12px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #c084fc;
+  margin: 0;
+}
+.case-title {
+  font-size: clamp(1.9rem, 5vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.25;
+  margin: 0;
+}
+.case-title strong {
+  font-weight: 600;
+  background: linear-gradient(120deg, #e9d5ff 0%, #a78bfa 40%, #8b5cf6 66%, #67e8f9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* 最后的白底二维码卡片 */
+.case-stack .scroll-stack-card--qr {
+  background: #ffffff;
+  border: none;
+}
+.case-qr-box {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 14px;
+  box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.35);
+}
+.case-qr-box img {
+  display: block;
+  width: min(300px, 62vw);
+  height: auto;
+}
+.case-qr-text {
+  font-size: 15px;
+  letter-spacing: 0.15em;
+  color: #16161b;
+  margin: 0;
+}
+.case-done {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(182, 0, 168, 0.5);
+  background: rgba(12, 12, 12, 0.85);
+  backdrop-filter: blur(10px);
+  color: #e9d5ff;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+}

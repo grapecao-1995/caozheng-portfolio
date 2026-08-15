@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------- */
+/* 全局暗色基调（#0C0C0C）            */
+/* ---------------------------------- */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  background-color: #0c0c0c;
+  color: #d7e2ea;
+  font-family: 'Kanit', 'Noto Sans SC', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: clip;
+}
+
+::selection {
+  background: rgba(182, 0, 168, 0.45);
+  color: #fff;
+}
+
+/* 细滚动条 */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0c0c0c;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a31;
+  border-radius: 8px;
+  border: 2px solid #0c0c0c;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a44;
+}
+
+/* ---------------------------------- */
+/* 渐变标题                            */
+/* ---------------------------------- */
+/* 注意：不使用 background-position 动画 —— 超大标题逐帧重绘会在大屏/弱机卡顿 */
+.hero-heading {
+  background: linear-gradient(180deg, #646973 0%, #bbccd7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* 冷色点缀渐变（联系区标题） */
+.text-gradient-cool {
+  background: linear-gradient(135deg, #a7c4ff 0%, #7ed3e6 55%, #5ee0ce 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* 深紫科技渐变（Hero 大标题） */
+.text-gradient-purple {
+  background: linear-gradient(120deg, #e9d5ff 0%, #a78bfa 40%, #8b5cf6 66%, #67e8f9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* 描边大字（序号等） */
+.text-stroke {
+  -webkit-text-stroke: 1.5px rgba(215, 226, 234, 0.3);
+  color: transparent;
+}
+
+/* ---------------------------------- */
+/* 布局工具                            */
+/* ---------------------------------- */
+/* PC 版心 1700px */
+.shell {
+  width: 100%;
+  /* 大屏流体网格：内容自然舒展到 1800px，消除两侧巨型黑边；
+     <1800px 时 100% 宽度，内边距 24px（md 起 48px） */
+  max-width: 1800px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+@media (min-width: 768px) {
+  .shell {
+    padding-inline: 48px;
+  }
+}
+
+/* 大屏根字号温和微调：1920px+ 时 rem 整体放大约 1.125 倍（16px→18px），
+   文字/按钮/间距仅精致微调 ~12%，绝不用 zoom 或巨型 vw */
+@media (min-width: 1920px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* 细网格背景（科技感） */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* 光晕 */
+.glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(120px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* 「查看更多案例」图标：旋转的渐变光环 */
+.case-more-icon {
+  position: relative;
+  background: rgba(215, 226, 234, 0.06);
+}
+.case-more-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  padding: 1.5px;
+  background: conic-gradient(from 0deg, #b600a8, #7621b0, #0ea5e9, #b600a8);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: case-ring-spin 3s linear infinite;
+}
+@keyframes case-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------------------------------- */
+/* 细节：键盘焦点可见性                */
+/* ---------------------------------- */
+:focus-visible {
+  outline: 2px solid rgba(182, 0, 168, 0.85);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------- */
+/* 细节：全站电影颗粒质感              */
+/* ---------------------------------- */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------- */
+/* 动效                               */
+/* ---------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
