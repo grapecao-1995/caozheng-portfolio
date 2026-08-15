@@ -62,8 +62,16 @@ const ScrollStack = ({
   const getElementOffset = useCallback(
     element => {
       if (useWindowScroll) {
-        const rect = element.getBoundingClientRect();
-        return rect.top + window.scrollY;
+        // 用 offsetTop 链（纯布局位置），不受 transform 影响。
+        // 不能用 getBoundingClientRect()：它包含卡片当前的 translate 变换，
+        // 而 pin 计算又依赖这个偏移 → 自我反馈，向上滚动时卡片会来回振荡跳动。
+        let top = 0;
+        let el = element;
+        while (el) {
+          top += el.offsetTop;
+          el = el.offsetParent;
+        }
+        return top;
       } else {
         return element.offsetTop;
       }
@@ -102,18 +110,23 @@ const ScrollStack = ({
 
       let blur = 0;
       if (blurAmount) {
-        let topCardIndex = 0;
+        // 平滑模糊：按“被覆盖深度 × 覆盖进度”渐变，而非阶跃突变（突变会加重跳动感）
+        let depth = 0;
         for (let j = 0; j < cardsRef.current.length; j++) {
           const jCardTop = getElementOffset(cardsRef.current[j]);
           const jTriggerStart = jCardTop - stackPositionPx - itemStackDistance * j;
-          if (scrollTop >= jTriggerStart) {
-            topCardIndex = j;
-          }
+          if (scrollTop >= jTriggerStart) depth++;
         }
-
-        if (i < topCardIndex) {
-          const depthInStack = topCardIndex - i;
-          blur = Math.max(0, depthInStack * blurAmount);
+        const topIndex = Math.max(0, depth - 1);
+        if (i < topIndex) {
+          const coverDepth = topIndex - i;
+          const topCardTop = getElementOffset(cardsRef.current[topIndex]);
+          const overlapStart = topCardTop - stackPositionPx - itemStackDistance * topIndex;
+          const overlapEnd = topCardTop + (cardsRef.current[topIndex]?.offsetHeight || 0) - stackPositionPx;
+          const t = overlapEnd > overlapStart
+            ? Math.min(1, Math.max(0, (scrollTop - overlapStart) / (overlapEnd - overlapStart)))
+            : 1;
+          blur = coverDepth * blurAmount * t;
         }
       }
 
