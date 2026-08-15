@@ -19,3 +19,6 @@ backups/
 /卡片 1/
 /卡片 2/
 /卡片 3/
+
+# wrangler 登录凭证（含 OAuth token，绝不提交）
+.wrangler-home/
