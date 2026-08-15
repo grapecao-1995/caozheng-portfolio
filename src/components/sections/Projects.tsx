@@ -330,7 +330,11 @@ function ProjectBlock({
 }
 
 /** 画廊单图：flex 按宽高比分宽，宽高比严格等于图片原始比例（零裁切）。
- *  BorderGlow 提供鼠标跟随的辉光边框，图片悬停放大保留。 */
+ *  BorderGlow 提供鼠标跟随的辉光边框，图片悬停放大保留。
+ *  大横幅图（2.4 比例）在行内显示很宽，640px 缩略图会糊——（项目1的16-19号、项目2的3/8号）
+ *  这些图额外提供 1280px 高清缩略图（srcset 按视口选择：小屏仍加载 640px 小图，不影响速度）。 */
+const HD_THUMB_RE = /project-(01-(1[6-9])|02-(03|08))-thumb\.webp$/
+
 function GalleryTile({
   src,
   alt,
@@ -347,6 +351,11 @@ function GalleryTile({
   onClick: () => void
 }) {
   const reduce = useReducedMotion()
+
+  // 高清缩略图 srcset：`-thumb-xl.webp` 仅对需要的大横幅图存在
+  const srcXl = HD_THUMB_RE.test(src)
+    ? src.replace(/-thumb\.webp$/, '-thumb-xl.webp')
+    : undefined
 
   return (
     <motion.div
@@ -376,6 +385,8 @@ function GalleryTile({
           {/* 行高 = 行宽 / 行内宽高比之和，图块宽高比与原始图片一致 → 不裁切不变形 */}
           <img
             src={src}
+            srcSet={srcXl ? `${src} 640w, ${srcXl} 1280w` : undefined}
+            sizes={srcXl ? '(min-width: 1280px) 900px, 640px' : undefined}
             alt={alt}
             loading="lazy"
             draggable={false}
