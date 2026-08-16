@@ -13,8 +13,8 @@ export const profile = {
   nameEn: 'CAO ZHENG', // ← 英文名 / 拼音
   role: '视觉设计师 · AI 设计师 · 品牌设计师',
   // 联系方式（先占位，替换成真实信息）
-  wechat: 'caozheng199542', // ← 微信号（对应二维码图 images/contact/wechat-qr.png）
-  phone: '17616527588', // ← 手机号
+  wechat: 'Aries6_C', // ← 微信号（对应二维码图 images/contact/wechat-qr.png）
+  phone: '15275372352', // ← 手机号
   email: '792672793@qq.com', // ← 邮箱
 }
 
