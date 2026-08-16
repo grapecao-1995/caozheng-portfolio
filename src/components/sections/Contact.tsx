@@ -137,7 +137,8 @@ export default function Contact() {
     () => ({
       // 正面：自定义卡片图（1600×2240，5:7）；背面：新名片背图（同规格）。
       // imageFit=cover：图片完全铺满卡片（无白边），比例相符时仅裁极小边缘。
-      frontImage: '/images/contact/card-front.webp',
+      // ?v=2：图片在 Cloudflare 缓存 7 天，换图后必须递增版本号才能让 CDN 拉新图
+      frontImage: '/images/contact/card-front.webp?v=2',
       backImage: '/images/contact/card-back-121121.webp',
       imageFit: 'cover',
       position: [0, 0, 13.5],
