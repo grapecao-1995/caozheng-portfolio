@@ -18,13 +18,22 @@
     <meta property="og:image" content="/images/hero/portrait.webp" />
     <title>曹政 — Visual / AI / Brand Designer</title>
 
-    <!-- 字体：Kanit（展示 / 拉丁，300-900）+ Noto Sans SC（中文回退） -->
+    <!-- 字体：Kanit（展示 / 拉丁，300-900）+ Noto Sans SC（中文回退）
+         异步加载：不阻塞首屏渲染——先显示系统字体，字体就绪后自动切换（display=swap 保证无 FOIT 白屏） -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <!-- 预加载首屏头像：Hero 标题停顿期间即可完成下载，头像出现时零等待 -->
     <link rel="preload" as="image" href="/images/hero/portrait.webp" />
   </head>
